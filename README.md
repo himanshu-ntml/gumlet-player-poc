@@ -21,6 +21,6 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Issue
-We're encountering a problem where the expires value passed into the Gumlet Player component is not being respected. Despite explicitly setting a custom expires value (e.g., 1), the player still defaults to an expiration time of 1 hour. As a result, any DRM token or session that should expire sooner remains valid for the full hour.
+We're encountering a problem where the expires value passed into the Gumlet Player component is not being respected. Despite explicitly setting a custom expires value (e.g., 1739967199894), the player still works after token expiry.
 
-Below is a simplified example showing how we're passing the expires prop and setting a custom value (1 second in this case), yet the player still defaults to a 1-hour expiry:
+We have a sample component in "/" route

@@ -11,13 +11,13 @@ const GumletPlayerComponent = () => {
     const [drmToken, setDrmToken] = useState<string | null>(null);
     const [tokenExpiry, setTokenExpiry] = useState<number | null>(null);
     const [loading, setLoading] = useState(true);
-
+    const [epochTime, setEpochTime] = useState(Date.now());
 
     useEffect(() => {
         // Fetch DRM token from the backend
         const fetchToken = async () => {
             try {
-                const response = await fetch("http://localhost:3000/player/auth", {
+                const response = await fetch("/player/auth", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ userId: "12345" }), // Replace with actual user ID
@@ -38,6 +38,13 @@ const GumletPlayerComponent = () => {
         };
 
         fetchToken();
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setEpochTime(Date.now());
+        }, 1000);
+        return () => clearInterval(interval);
     }, []);
 
     const handleReady = () => {
@@ -87,7 +94,7 @@ const GumletPlayerComponent = () => {
     };
 
     const defaultPlayerProps = {
-        videoID: "674e49eadeed8d45e9f92b72",
+        videoID: "67b3f4e1a088b0540c119413",
         // title: "Gumlet Player Example",
         // style: { height: "100vh", width: "100vw", position: "relative" },
         // autoplay: false,
@@ -109,6 +116,8 @@ const GumletPlayerComponent = () => {
         // },
     };
 
+    // const expires = Date.now() + (60 * 5)
+
     return (
         <>
             <div style={{ padding: "10px" }}>
@@ -125,18 +134,21 @@ const GumletPlayerComponent = () => {
                 <button style={{ marginRight: "10px" }} onClick={getPlaybackRate}>Get playback rate</button>
             </div>
             {/* <div style={{ marginTop: "10px", padding: "10px" }}> */}
+            value--: {tokenExpiry == epochTime ? 'times up' : tokenExpiry / 1000}
+            <br />
+            current: {epochTime / 1000}
             <GumletPlayer
                 ref={playerRef}
                 title={"hello world"}
                 {...defaultPlayerProps}
                 style={{ height: "100vh", width: "100vw", position: "relative" }}
-                expires={1}
+                // expires={expires}
                 loop={false}
                 // t= {50}
                 // disable_seek={true}
                 // disable_player_controls={true}
-                watermark_text="MFT iasa ahsuhaushauhsauhasuhauhsauhsauhsuhaushuhsuhauhsuhuh"
-                drm_token={drmToken}
+                // watermark_text="MFT iasa ahsuhaushauhsauhasuhauhsauhsauhsuhaushuhsuhauhsuhuh"
+                // drm_token={drmToken}
                 expires={tokenExpiry}
                 onReady={handleReady}
                 onError={(e) => console.error("Error event", e)}

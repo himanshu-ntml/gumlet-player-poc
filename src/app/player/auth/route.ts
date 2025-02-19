@@ -17,17 +17,17 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
         }
 
-        const expiresInSeconds = 100; // Token expires in 10 seconds
+        const expiresInSeconds = 1000 * 60; // Token expires in 5 min
 
         const drmToken = jwt.sign(
-            { userId, videoID: "674e49eadeed8d45e9f92b72" },
+            { userId, videoID: "67b3f4e1a088b0540c119413" },
             process.env.SECRET_KEY!,
             { expiresIn: expiresInSeconds } // Token expires in 1 hour
         );
 
         return NextResponse.json({
             drmToken,
-            expires: Date.now() + expiresInSeconds * 1000, // Expiry in milliseconds
+            expires: Math.floor(Date.now()) + (expiresInSeconds), // Expiry in milliseconds
         });
     } catch (error) {
         console.error("Error generating DRM token:", error);
