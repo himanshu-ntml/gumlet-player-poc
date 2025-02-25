@@ -12,11 +12,14 @@
     "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
   },
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.26.9",
+    "@gumlet/react-drm-player": "^1.0.2",
     "@gumlet/react-embed-player": "^1.0.8",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241218.0",
