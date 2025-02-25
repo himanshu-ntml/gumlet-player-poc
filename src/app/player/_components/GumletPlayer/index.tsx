@@ -100,7 +100,7 @@ const GumletPlayerComponent = () => {
   };
 
   const defaultPlayerProps = {
-    videoID: "67b3f4e1a088b0540c119413",
+    videoID: "67bd3f336ca0059a95b6a7bd",
     // title: "Gumlet Player Example",
     // style: { height: "100vh", width: "100vw", position: "relative" },
     // autoplay: false,

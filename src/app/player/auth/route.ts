@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     const expiresInSeconds = 1000 * 60; // Token expires in 5 min
 
     const drmToken = jwt.sign(
-      { userId, videoID: "67b3f4e1a088b0540c119413" },
+      { userId, videoID: "67bd3f336ca0059a95b6a7bd" },
       process.env.SECRET_KEY!,
       { expiresIn: expiresInSeconds } // Token expires in 1 hour
     );
